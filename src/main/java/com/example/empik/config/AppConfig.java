@@ -15,12 +15,4 @@ public class AppConfig {
         return builder.build();
     }
 
-   /* @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-        return args -> {
-            User user = restTemplate.getForObject(
-                    "https://quoters.apps.pcfone.io/api/random", User.class);
-            System.out.println("Ups... I have a problem.");
-        };
-    }*/
 }

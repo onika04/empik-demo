@@ -16,6 +16,7 @@ public class GithubUser {
     private Integer followers;
     private Integer public_repos;
 
+    public GithubUser(){}
 
     public GithubUser(Integer id, String login, String name, String type, String avatarUrl, Instant createdAt, Integer followers, Integer public_repos) {
         this.id = id;
