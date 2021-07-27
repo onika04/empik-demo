@@ -6,26 +6,26 @@ import java.time.Instant;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class GithubUser {
     private Integer id;
     private String login;
     private String name;
     private String type;
     private String avatarUrl;
     private Instant createdAt;
-    private Integer calculations;
+    private Integer followers;
+    private Integer public_repos;
 
 
-    public User() {}
-
-    public User(Integer id, String login, String name, String type, String avatarUrl, Instant createdAt, Integer calculations) {
+    public GithubUser(Integer id, String login, String name, String type, String avatarUrl, Instant createdAt, Integer followers, Integer public_repos) {
         this.id = id;
         this.login = login;
         this.name = name;
         this.type = type;
         this.avatarUrl = avatarUrl;
         this.createdAt = createdAt;
-        this.calculations = calculations;
+        this.followers = followers;
+        this.public_repos = public_repos;
     }
 
     public Integer getId() {
@@ -76,37 +76,47 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public Integer getCalculations() {
-        return calculations;
+
+    public Integer getFollowers() {
+        return followers;
     }
 
-    public void setCalculations(Integer calculations) {
-        this.calculations = calculations;
+    public void setFollowers(Integer followers) {
+        this.followers = followers;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(login, user.login) && Objects.equals(name, user.name) && Objects.equals(type, user.type) && Objects.equals(avatarUrl, user.avatarUrl) && Objects.equals(createdAt, user.createdAt) && Objects.equals(calculations, user.calculations);
+    public Integer getPublic_repos() {
+        return public_repos;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, login, name, type, avatarUrl, createdAt, calculations);
+    public void setPublic_repos(Integer public_repos) {
+        this.public_repos = public_repos;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "GithubUser{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", createdAt=" + createdAt +
-                ", calculations=" + calculations +
+                ", followers=" + followers +
+                ", public_repos=" + public_repos +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GithubUser that = (GithubUser) o;
+        return Objects.equals(id, that.id) && Objects.equals(login, that.login) && Objects.equals(name, that.name) && Objects.equals(type, that.type) && Objects.equals(avatarUrl, that.avatarUrl) && Objects.equals(createdAt, that.createdAt) && Objects.equals(followers, that.followers) && Objects.equals(public_repos, that.public_repos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, name, type, avatarUrl, createdAt, followers, public_repos);
     }
 }
