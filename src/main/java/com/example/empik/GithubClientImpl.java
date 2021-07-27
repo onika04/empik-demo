@@ -16,6 +16,6 @@ public class GithubClientImpl implements GithubClient{
     @Override
     public GithubUser getDataFromGithub(String login) {
         String url = GITHUB_URI + login;
-        return restTemplate.getForEntity(url, User.class).getBody();
+        return restTemplate.getForEntity(url, GithubUser.class).getBody();
     }
 }
