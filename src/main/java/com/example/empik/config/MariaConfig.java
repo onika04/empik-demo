@@ -6,16 +6,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//@Configuration
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+@Configuration
 public class MariaConfig {
 
-    //@Bean(name="mariaDb")
-    CommandLineRunner initDatabase( UsersRepository repository) {
-
-        return args -> {
-            long count = repository.count();
-            System.out.println(count);
-            System.out.println("create new account");
-        };
+    @Bean(name = "mariaDb")
+    CommandLineRunner initDatabase(UsersRepository repository) {
+        try {
+            try (Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/empik?user=root&password=admin")) {
+                System.out.println("connected");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return args -> repository.count();
     }
 }
