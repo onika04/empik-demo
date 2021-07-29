@@ -7,34 +7,25 @@ import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GithubUser {
-    private Integer id;
     private String login;
     private String name;
     private String type;
-    private String avatarUrl;
-    private Instant createdAt;
-    private Integer followers;
-    private Integer public_repos;
+    private String avatar_url;
+    private Instant created_at;
+    private int followers;
+    private int public_repos;
 
-    public GithubUser(){}
+    public GithubUser() {
+    }
 
-    public GithubUser(Integer id, String login, String name, String type, String avatarUrl, Instant createdAt, Integer followers, Integer public_repos) {
-        this.id = id;
+    public GithubUser(String login, String name, String type, String avatar_url, Instant created_at, Integer followers, Integer public_repos) {
         this.login = login;
         this.name = name;
         this.type = type;
-        this.avatarUrl = avatarUrl;
-        this.createdAt = createdAt;
+        this.avatar_url = avatar_url;
+        this.created_at = created_at;
         this.followers = followers;
         this.public_repos = public_repos;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getLogin() {
@@ -62,47 +53,45 @@ public class GithubUser {
     }
 
     public String getAvatarUrl() {
-        return avatarUrl;
+        return avatar_url;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setAvatarUrl(String avatar_url) {
+        this.avatar_url = avatar_url;
     }
 
     public Instant getCreatedAt() {
-        return createdAt;
+        return created_at;
     }
 
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(Instant created_at) {
+        this.created_at = created_at;
     }
 
-
-    public Integer getFollowers() {
+    public int getFollowers() {
         return followers;
     }
 
-    public void setFollowers(Integer followers) {
+    public void setFollowers(int followers) {
         this.followers = followers;
     }
 
-    public Integer getPublic_repos() {
+    public int getPublic_repos() {
         return public_repos;
     }
 
-    public void setPublic_repos(Integer public_repos) {
+    public void setPublic_repos(int public_repos) {
         this.public_repos = public_repos;
     }
 
     @Override
     public String toString() {
         return "GithubUser{" +
-                "id=" + id +
                 ", login='" + login + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", avatarUrl='" + avatarUrl + '\'' +
-                ", createdAt=" + createdAt +
+                ", avatarUrl='" + avatar_url + '\'' +
+                ", createdAt=" + created_at +
                 ", followers=" + followers +
                 ", public_repos=" + public_repos +
                 '}';
@@ -113,11 +102,11 @@ public class GithubUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GithubUser that = (GithubUser) o;
-        return Objects.equals(id, that.id) && Objects.equals(login, that.login) && Objects.equals(name, that.name) && Objects.equals(type, that.type) && Objects.equals(avatarUrl, that.avatarUrl) && Objects.equals(createdAt, that.createdAt) && Objects.equals(followers, that.followers) && Objects.equals(public_repos, that.public_repos);
+        return Objects.equals(login, that.login) && Objects.equals(name, that.name) && Objects.equals(type, that.type) && Objects.equals(avatar_url, that.avatar_url) && Objects.equals(created_at, that.created_at) && Objects.equals(followers, that.followers) && Objects.equals(public_repos, that.public_repos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, name, type, avatarUrl, createdAt, followers, public_repos);
+        return Objects.hash(login, name, type, avatar_url, created_at, followers, public_repos);
     }
 }

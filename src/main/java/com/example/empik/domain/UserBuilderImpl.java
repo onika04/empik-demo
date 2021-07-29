@@ -1,25 +1,16 @@
-package com.example.empik;
-
-import com.example.empik.domain.GithubUser;
-import com.example.empik.domain.User;
+package com.example.empik.domain;
 
 import java.time.Instant;
 
 public class UserBuilderImpl implements UserBuilder {
-    private Integer id;
     private String login;
     private String name;
     private String type;
     private String avatarUrl;
     private Instant createdAt;
-    private Integer followers;
-    private Integer public_repos;
-    private Integer calculations;
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private int followers;
+    private int public_repos;
+    private double calculations;
 
     @Override
     public void setLogin(String login) {
@@ -47,27 +38,27 @@ public class UserBuilderImpl implements UserBuilder {
     }
 
     @Override
-    public void setFollowers(Integer followers) {
+    public void setFollowers(int followers) {
         this.followers = followers;
     }
 
     @Override
-    public void setPublic_repos(Integer public_repos) {
+    public void setPublic_repos(int public_repos) {
         this.public_repos = public_repos;
     }
 
     @Override
-    public void setCalculations(Integer calculations) {
-    this.calculations = calculations;
+    public void setCalculations(double calculations) {
+        this.calculations = calculations;
     }
 
     @Override
     public GithubUser gitHubUserBuild() {
-        return new GithubUser(id, login, name, type, avatarUrl, createdAt, followers, public_repos);
+        return new GithubUser(login, name, type, avatarUrl, createdAt, followers, public_repos);
     }
 
     @Override
     public User userBuild() {
-        return  new User(id, login, name, type, avatarUrl, createdAt, calculations);
+        return new User(login, name, type, avatarUrl, createdAt, calculations);
     }
 }

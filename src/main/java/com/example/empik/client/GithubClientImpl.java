@@ -1,13 +1,12 @@
-package com.example.empik;
+package com.example.empik.client;
 
 import com.example.empik.domain.GithubUser;
-import com.example.empik.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class GithubClientImpl implements GithubClient{
+public class GithubClientImpl implements GithubClient {
     private static final String GITHUB_URI = "https://api.github.com/users/";
 
     @Autowired

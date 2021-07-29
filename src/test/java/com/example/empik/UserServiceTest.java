@@ -1,5 +1,6 @@
 package com.example.empik;
 
+import com.example.empik.client.GithubClient;
 import com.example.empik.database.UsersRepository;
 import com.example.empik.database.UsersTable;
 import com.example.empik.domain.GithubUser;
@@ -35,7 +36,7 @@ class UserServiceTest {
         //given
         String login = "anyLogin";
         User newUser = createUser(login);
-        GithubUser githubUser =  createGithubUser(login);
+        GithubUser githubUser = createGithubUser(login);
         UsersTable usersTable = new UsersTable(login, 1);
         when(client.getDataFromGithub(login)).thenReturn(githubUser);
         when(repository.findUsersByLogin(login)).thenReturn(usersTable);
@@ -53,7 +54,7 @@ class UserServiceTest {
         //given
         String login = "anyLogin";
         User newUser = createUser(login);
-        GithubUser githubUser =  createGithubUser(login);
+        GithubUser githubUser = createGithubUser(login);
         UsersTable usersTable = new UsersTable(login, 1);
         when(client.getDataFromGithub(login)).thenReturn(githubUser);
         when(repository.findUsersByLogin(login)).thenReturn(null);
@@ -71,7 +72,7 @@ class UserServiceTest {
         //given
         String login = "anyLogin";
         Integer previewCount = 10;
-        GithubUser githubUser =  createGithubUser(login);
+        GithubUser githubUser = createGithubUser(login);
         UsersTable usersTable = new UsersTable(login, previewCount);
         UsersTable incrementsUsersTable = new UsersTable(login, previewCount + 1);
         when(client.getDataFromGithub(login)).thenReturn(githubUser);
@@ -86,7 +87,6 @@ class UserServiceTest {
 
     private User createUser(String login) {
         User user = new User();
-        user.setId(1);
         user.setLogin(login);
         user.setName("anyName");
         user.setType("User");
@@ -98,7 +98,6 @@ class UserServiceTest {
 
     private GithubUser createGithubUser(String login) {
         GithubUser user = new GithubUser();
-        user.setId(1);
         user.setLogin(login);
         user.setName("anyName");
         user.setType("User");

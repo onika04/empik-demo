@@ -1,5 +1,6 @@
 package com.example.empik;
 
+import com.example.empik.client.GithubClient;
 import com.example.empik.database.UsersRepository;
 import com.example.empik.database.UsersTable;
 import com.example.empik.domain.GithubUser;
@@ -20,7 +21,7 @@ public class UserService {
 
     public User updateCountCalculation(String login) {
         GithubUser githubUser = client.getDataFromGithub(login);
-        Integer calculate = calculate(githubUser.getFollowers(), githubUser.getPublic_repos());
+        double calculate = simpleCalculate(githubUser.getFollowers(), githubUser.getPublic_repos());
         insertOrUpdateRequestCount(login);
 
         return mapper.mapToUser(githubUser, calculate);
@@ -34,12 +35,18 @@ public class UserService {
             userToSave = new UsersTable(login, 1);
         } else {
             long incrementCount = userTable.getRequest_count() + 1;
-            userToSave = new UsersTable(login, incrementCount);
+            userToSave = new UsersTable(userTable.getId(), login, incrementCount);
         }
-        repository.save(userToSave);
+        try {
+            repository.save(userToSave);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
-    private Integer calculate(Integer followers, Integer public_repos) {
-        return 6 / followers * (2 + public_repos);
+    private double simpleCalculate(int followers, int public_repos) {
+        double divideFollower = (double) 6 / followers;
+        int addPublicRepos = 2 + public_repos;
+        return divideFollower * addPublicRepos;
     }
 }
